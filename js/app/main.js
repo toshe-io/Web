@@ -1,8 +1,5 @@
 /* VARS */
 var icon_publicBroker = "#broker-status-icon";
-var chat_window = ".chat-window";
-var chat_inputText = ".chat-input-text";
-var chat_inputSendBtn = ".chat-send-btn";
 
 var vote_window = ".vote-window";
 
@@ -19,37 +16,11 @@ var getTime = function(timestamp) {
 
 	return date.getHours() + ":" + date.getMinutes();
 }
-/* MQTT */
-
-var publicOnConnected = function() {
-	$(icon_publicBroker).addClass("status-active");
-
-	publicClient.subscribe(topic_chat, {qos: 0});
-	
-	chatSendMessage(publicClientID, "connected", "");
-}
-
-var publicOnDisconnected = function(message) {
-	console.log("Connection failed: " + message);
-	$(icon_publicBroker).removeClass("status-active");
-	$(icon_publicBroker).addClass("status-inactive");
-	
-	chatSendMessage(publicClientID, "disconnected", "");
-}
-
-var publicOnMessageArrived = function(message) {
-	if(message.destinationName == topic_chat) {
-		var jsonMessage = JSON.parse(message.payloadString);
-		
-		chatReceivedMessage(jsonMessage);
-	}
-}
-
 
 /* CHAT */
 
 // TODO: Clean: chat-window, move to document ready
-
+/*
  var chatSendMessage = function (id, action, text) {
 	var payload = {"id": id, "action": action, "text": text, "time": getTimestamp()};
 	
@@ -103,6 +74,7 @@ $(document).on('keypress', chat_inputText, function (e) {
 $(document).on('click', chat_inputSendBtn, function (e) {
 	chatSendMessageFromInput();
 });
+*/
 
 /* CHARTS */
 var chartAdd = function(chartID, value) {
