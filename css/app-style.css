@@ -1,0 +1,307 @@
+/* TODO: Check unecessary font-weight */
+html {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+/* CHAT STUFF */
+
+.chat-window, .vote-window {
+	padding: 10px;
+	overflow-y: scroll;
+    overflow-x: hidden;
+    height: 88%;
+	word-wrap: break-word;
+}
+
+
+.chat-box {
+	background: white;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 5px;
+}
+
+.chat-box-title {
+	width: 100%;
+	margin: 0;
+    font-size: 12px;
+	font-weight: 300;
+}
+
+.chat-box-text {
+	margin: 0;
+    font-size: 14px;
+    padding-top: 5px;
+	font-weight: 300;
+}
+
+.chat-box-time {
+	font-size: 10px;
+	float: right;
+	margin-top: -5px;
+	font-style: italic;
+	color: darkgray;
+	font-weight: 300;
+}
+
+.chat-send-window {
+	background: #373e48;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+	height: 32px;
+	padding: 10px;
+	display: inline-flex;
+}
+
+.chat-input-text {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+}
+
+.chat-input-button {
+	width: 29.7%;
+    height: 100%;
+    border: none;
+    background: white;
+}
+
+.chat-input-text-box {
+	width: 91%;
+    height: 100%;
+}
+/* TODO: Fix, if tab moved button wont fit anymore */
+.chat-send-btn-box {
+    right: 40px;
+    position: absolute;
+    margin-top: 5px;
+}
+
+/* SIDEBAR STUFF */
+
+.side-bar {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.side-bar-bottom {
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+.side-bar>li {
+    margin-bottom: 20px;
+}
+
+.side-bar>li>a {
+    text-decoration: none;
+}
+
+.btn-icon {
+    color: #7990a7;
+}
+
+.side-bar>li h3 {
+	font-size: 14px;
+	font-weight: 300;
+	margin: 0;
+    margin-top: 5px;
+}
+
+
+/* GENERAL STUFF */
+.fab, .fas, .far {
+    font-size: 24px;
+}
+
+.btn-icon:hover>i.fab, .btn-icon:hover>i.fas, .btn-icon:hover>i.far {
+    color: #98c8ff;
+}
+
+.btn-icon:hover>i.fas {
+    color: #98c8ff;
+}
+
+/* STATISCTICS STUFF */
+.statistics-window {
+	height: 100%;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow-y: scroll;
+}
+
+.stats-waterbubble {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.stats-highchart {
+	display: inline-block;
+}
+
+/* ICON STUFF */
+.status-active {
+	color: #2ecc71 !important;
+}
+
+.status-inactive {
+	color: #e74c3c !important;
+}
+
+/* SCROLLBAR STUFF */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    /* background: #f1f1f1; */
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: #3c4451; 
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4e5969; 
+}
+
+/* TOSHE VIEW */
+.tosheView {
+    text-align: center;
+}
+
+/* VOTE */
+.vote-box {
+	background: white;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 5px;
+}
+
+.vote-box-title {
+	width: 100%;
+	margin: 0;
+    font-size: 14px;
+	font-weight: 300;
+}
+
+.vote-box-info {
+	margin: 0;
+    font-size: 12px;
+    padding-top: 10px;
+	font-weight: 300;
+}
+
+.vote-box-info .fab, .vote-box-info .fas, .vote-box-info .far {
+    font-size: 18px;
+}
+
+.vote-box-info>a {
+    text-decoration: none;
+    margin-right: 10px;
+    color: black;
+}
+
+.vote-box-info .vote-like-btn {
+    color: #3498db;
+}
+
+.vote-box-info .vote-budget-btn {
+    color: #2ecc71;
+}
+
+.vote-box-info .vote-github-btn {
+    float: right;
+}
+
+.vote-separator {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.vote-separator > span {
+    position: relative;
+    display: inline-block;
+    color: white;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.vote-separator > span:before,
+.vote-separator > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: #7990a7;
+}
+
+.vote-separator > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.vote-separator > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.vote-send-window {
+	background: #373e48;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+	height: 32px;
+	padding: 10px;
+	display: inline-flex;
+}
+
+.vote-input-text {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+}
+
+.vote-input-button {
+	width: 29.7%;
+    height: 100%;
+    border: none;
+    background: white;
+}
+
+.vote-input-text-box {
+	width: 91%;
+    height: 100%;
+}
+/* TODO: Fix, if tab moved button wont fit anymore */
+.vote-send-btn-box {
+    right: 40px;
+    position: absolute;
+    margin-top: 5px;
+}
+
+.vote-step-count {
+    position: relative;
+    top: -3px;
+}
