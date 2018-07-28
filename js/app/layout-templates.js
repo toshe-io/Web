@@ -178,18 +178,10 @@ var createSidebarItem = function( id, title, icon ) {
 }
 
 var createChatItem = function( title, text, time ) {
-return $('<div class="chat-box"> \
-<h4 class="chat-box-title"> \
-	' + title + ' \
-</h4> \
-\
-<h3 class="chat-box-text"> \
-	' + text + ' \
-</h3> \
-\
-<h4 class="chat-box-time"> \
-	' + time + ' \
-</h4></div>')
+	return $('<div class="chat-box"></div>')
+	.append( $('<h4 class="chat-box-title"></h4>').text(title) )
+	.append( $('<h4 class="chat-box-text"></h4>').text(text) )
+	.append( $('<h4 class="chat-box-time"></h4>').text(time) );
 }
 
 var createChatSendWindow = function() {
@@ -204,32 +196,58 @@ var createVoteSendWindow = function() {
 	return $( '<div class="vote-send-window"> \
 						<div class="vote-input-text-box"> <input class="vote-input-text" placeholder="Description" type="text" name"vote-input-text"> </div> \
 						<div class="vote-send-btn-box"> \
-							<a class="vote-send-btn btn-icon vote-step-previous" href="#"> <i class="fas fa-angle-left"></i></a> \
+							<a class="vote-send-btn btn-icon vote-step-previous" style="display: none;" href="#"> <i class="fas fa-angle-left"></i></a> \
 							<span class="vote-step-count">1</span> \
 							<a class="vote-send-btn btn-icon vote-step-next" href="#"> <i class="fas fa-angle-right"></i></a> \
 						</div> \
 					</div>' );
 }
 
-var createVoteItem = function( text, link, likes, budget ) {
-	return $('<div class="vote-box"> \
-	<h4 class="vote-box-title"> \
-		' + text + ' \
-	</h4> \
-	\
-	<h3 class="vote-box-info"> \
-		<a href="#"> <i class="far fa-thumbs-up vote-like-btn"></i> ' + likes + '</a> \
-		<a href="#"> <i class="fas fa-dollar-sign vote-budget-btn"></i> ' + budget + '</a> \
-		<a href="' + link + '" target="_blank"> <i class="fab fa-github vote-github-btn"></i></a> \
-	</h3> \
-	\
-	</div>')
+var voteIconForStatus = function( status ) {
+	if ( status == "pending" )
+		return "far fa-clock";
+	else if ( status == "approved" )
+		return "far fa-check-circle";
+	else if ( status == "rejected" )
+		return "far fa-times-circle";
 }
 
-var createVoteSeparator = function( text ) {
-	return $('<div class="vote-separator"> \
+var voteColorForStatus = function( status ) {
+	if ( status == "pending" )
+		return "blue";
+	else if ( status == "approved" )
+		return "green";
+	else if ( status == "rejected" )
+		return "red";
+}
+
+var createVoteItem = function( text, link, status, likes, budget ) {
+	var statusIc
+	return $('<div class="vote-box"></div>')
+	.append( $('<h4 class="vote-box-title"></h4>').text(text) )
+
+	.append( 
+		$('<h3 class="vote-box-info"></h3>')
+		.append( $('<a href="#"> <i class="far fa-thumbs-up blue"></i> ' + likes + '</a>') )
+		.append( $('<a href="#"> <i class="fas fa-dollar-sign green"></i> ' + budget + '</a>') )
+		.append( $('<a href="' + link + '" target="_blank" class="right" style="margin-right: 0px;"> \
+						<i class="fab fa-github"></i> \
+					</a>') )
+		.append( $('<a href="#" target="_blank" class="right"> \
+						<i class="' + voteIconForStatus(status) + " " + voteColorForStatus(status) + '"></i> \
+					</a>') )
+	)
+}
+
+var createVoteSeparator = function( timestamp ) {
+	var date = moment.unix(timestamp);
+	var month = date.format("MMMM");
+	var year = date.format("YYYY");
+	var dateClass = "vote-separator-" + month + "-" + year;
+
+	return $('<div class="vote-separator ' + dateClass + '"> \
 	<span> \
-		' + text + ' \
+		' + month + ' \
 	</span> \
 	</div>')
 }
