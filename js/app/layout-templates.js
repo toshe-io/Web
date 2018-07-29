@@ -171,10 +171,13 @@ var createHighchartsSingle = function( id, title, color, w, h ) {
 	return elem;
 }
 
-var createSidebarItem = function( id, title, icon ) {
-	return $( '<li id="' + id + '"> <a id="' + id + '-link" class="btn-icon" href="#"> \
-					<i id="' + id + '-icon" class="' + icon + '"></i> \
-			   <h3>' + title + '</h3></a> </li>' );
+var createSidebarItem = function( id, title, icon, link = "#" ) {
+	return $( '<li id="' + id + '"> \
+					<a id="' + id + '-link" class="btn-icon" href="' + link + '"> \
+						<i id="' + id + '-icon" class="' + icon + '"></i> \
+						   <h3>' + title + '</h3> \
+					</a> \
+			   </li>' );
 }
 
 var createChatItem = function( title, text, time ) {
@@ -221,19 +224,19 @@ var voteColorForStatus = function( status ) {
 		return "red";
 }
 
-var createVoteItem = function( text, link, status, likes, budget ) {
+var createVoteItem = function( id, text, link, status, likes, budget ) {
 	var statusIc
-	return $('<div class="vote-box"></div>')
+	return $('<div id="vote-box-' + id + '" class="vote-box"></div>')
 	.append( $('<h4 class="vote-box-title"></h4>').text(text) )
 
 	.append( 
 		$('<h3 class="vote-box-info"></h3>')
-		.append( $('<a href="#"> <i class="far fa-thumbs-up blue"></i> ' + likes + '</a>') )
-		.append( $('<a href="#"> <i class="fas fa-dollar-sign green"></i> ' + budget + '</a>') )
+		.append( $('<a href="#" class="vote-likes-btn"> <i class="far fa-thumbs-up blue"></i> <span>' + likes + '</span></a>') )
+		.append( $('<a href="#" class="vote-budget-btn"> <i class="fas fa-dollar-sign green"></i> <span>' + budget + '</span></a>') )
 		.append( $('<a href="' + link + '" target="_blank" class="right" style="margin-right: 0px;"> \
 						<i class="fab fa-github"></i> \
 					</a>') )
-		.append( $('<a href="#" target="_blank" class="right"> \
+		.append( $('<a href="#" class="right"> \
 						<i class="' + voteIconForStatus(status) + " " + voteColorForStatus(status) + '"></i> \
 					</a>') )
 	)

@@ -9,6 +9,7 @@ $(function () {
     const vote_step_count = ".vote-step-count";
     const vote_step_previous = ".vote-step-previous";
     const vote_step_next = ".vote-step-next";
+    const vote_likes_btn = ".vote-likes-btn";
     var socket = io(host);
 
     var newVote = [];
@@ -27,7 +28,11 @@ $(function () {
         }
     });
 
-    var getSeparatorClassForTimestamp = function(timestamp) {
+    socket.on('update_vote', function(vote){
+        updateVote(vote);
+    });
+
+    const getSeparatorClassForTimestamp = function(timestamp) {
         var date = moment.unix(timestamp);
         var month = date.format("MMMM");
         var year = date.format("YYYY");
@@ -35,7 +40,7 @@ $(function () {
     }
 
     var receiveVote = function(vote) {
-        console.log(vote);
+        var id = vote["id"];
         var description = vote["description"];
         var link = vote["link"];
         var likes = vote["likes"];
@@ -46,17 +51,30 @@ $(function () {
         var separatorClass = $(getSeparatorClassForTimestamp(time));
 
         if (separatorClass.length == 0) {
-            console.log("here");
             voteSeparator(time);
         }
         
-        voteAdd(description, link, status, likes, budget, time);
+        voteAdd(id, description, link, status, likes, budget, time);
     }
 
-    var voteAdd = function(text, link, status, likes, budget, time) {
+    var updateVote = function(vote) {
+        var id = vote["id"];
+        var description = vote["description"];
+        var link = vote["link"];
+        var likes = vote["likes"];
+        var budget = vote["budget"];
+        var status = vote["status"];
+        var time = vote["time"];
+
+        var voteBox = "#vote-box-" + id;
+
+        $(voteBox).find(vote_likes_btn).find("span").text(likes);
+    }
+
+    var voteAdd = function(id, text, link, status, likes, budget, time) {
         var separator_window = getSeparatorClassForTimestamp(time);
 
-        $(separator_window).append( createVoteItem(text, link, status, likes, budget) );
+        $(separator_window).append( createVoteItem(id, text, link, status, likes, budget) );
     }
     
     var voteSeparator = function(timestamp) {
@@ -93,10 +111,15 @@ $(function () {
     }
 
     var submitVote = function(user, description, link, budget) {
-        console.log("submit");
         var payload = {"user": user, "description": description, "link": link, "budget": budget};
 
         socket.emit('vote', payload );
+    }
+
+    var submitLike = function(voteID) {
+        var payload = {"id": voteID};
+
+        socket.emit('like', payload );
     }
 
     var resetStep = function() {
@@ -138,6 +161,10 @@ $(function () {
         return false;
     }
 
+    const getVoteIDFromClass = function(voteBox) {
+        return $(voteBox).attr("id").replace("vote-box-", "");
+    }
+
     // EVENTS
     $(document).on('keypress', vote_input, function (e) {
         if (e.keyCode === 13) {
@@ -151,6 +178,14 @@ $(function () {
 
     $(document).on('click', vote_step_previous, function (e) {
         processStep(-1);
+    });
+
+    $(document).on('click', vote_likes_btn, function (e) {
+        var voteID = getVoteIDFromClass($(this).closest( ".vote-box" ));
+
+        if ( $.isNumeric(voteID) ) {
+            submitLike(voteID);
+        }
     });
 
   });

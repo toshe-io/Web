@@ -82,13 +82,12 @@ appLayout.registerComponent('sideBar', function( container, state ){
 	container.getElement().css( 'background-color', state.color );
 	
 	menu = $( '<ul class="side-bar"></ul>' );
-	menu.append( createSidebarItem("torp-status", "STATUS", "fas fa-power-off") );
-	menu.append( createSidebarItem("broker-status", "BROKER", "fas fa-cloud") );
-	menu.append( createSidebarItem("computer-status", "TOSHE", "fas fa-robot") );
+	menu.append( createSidebarItem("api-status", "API", "fas fa-server") );
+	menu.append( createSidebarItem("toshe-status", "TOSHE", "fas fa-robot") );
 	
 	menuBottom = $( '<ul class="side-bar side-bar-bottom"></ul>' );
 	menuBottom.append( createSidebarItem("github-link", "HELP", "far fa-question-circle") );
-	menuBottom.append( createSidebarItem("github-link", "GITHUB", "fab fa-github") );
+	menuBottom.append( createSidebarItem("github-link", "GITHUB", "fab fa-github", "https://github.com/toshe-io") );
 	
 	container.getElement().append( menu );
 	container.getElement().append( menuBottom );
