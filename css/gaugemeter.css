@@ -1,0 +1,42 @@
+.gaugemeter{
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    cursor: default;
+    margin: auto;
+    margin-top: -20px;
+}
+
+.gaugemeter span,
+.gaugemeter b {
+    margin:	0 23%;
+    width: 54%;
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    font-weight: 100;
+    font-family: "open sans", arial;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.gaugemeter[data-style="semi"] b{
+    margin: 0 10%;
+    width: 80%;
+}
+
+.gaugemeter s,
+.gaugemeter u{
+    text-decoration:none;
+    font-size: .60em;
+    font-weight: 200;
+    opacity: .6;
+}
+
+.gaugemeter b{
+    color: black;
+    font-weight: 200;
+    font-size: 0.65em;
+    opacity: .8;
+}

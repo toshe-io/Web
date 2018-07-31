@@ -1,6 +1,7 @@
 var config = {
 	dimensions: {
-      borderWidth: 1
+	  borderWidth: 1,
+	  minItemWidth: 50
     },
 	content: [{
 		type: 'row',
@@ -30,7 +31,7 @@ var config = {
 			{
 				type: 'component',
 				componentName: 'statistics',
-				title: 'Statistics'
+				title: 'TOSHE Statistics'
 			}]
 		}, 
 		
@@ -45,13 +46,22 @@ var config = {
 			},
 			{
 				type: 'component',
-				componentName: 'voteWindow',
-				title: 'Vote',
+				componentName: 'proposalWindow',
+				title: 'Proposals',
 				height: 90
 			}]
 		}]
 	}]
 };
+
+// appLayout.root.contentItems[0].contentItems[2].contentItems[0] chat
+// appLayout.root.contentItems[0].contentItems[2].contentItems[1] proposals
+
+// appLayout.root.contentItems[0].contentItems[2].contentItems[0].parent.addChild(
+//	appLayout.root.contentItems[0].contentItems[0].contentItems[0], 0)
+
+// appLayout.root.contentItems[0].contentItems[1].contentItems[1].contentItems[0].config stats
+// appLayout.root.contentItems[0].contentItems[1].contentItems[1].contentItems[0].parent.addChild(appLayout.root.contentItems[0].contentItems[2].contentItems[0])
 
 var appLayout = new GoldenLayout(config);
 
@@ -64,16 +74,17 @@ appLayout.registerComponent('chatWindow', function( container, state ) {
 	container.getElement().append( createChatSendWindow() );
 });
 
-appLayout.registerComponent('voteWindow', function( container, state ) {
-	voteWindow = $( '<div class="vote-window"></div>' );
+appLayout.registerComponent('proposalWindow', function( container, state ) {
+	proposalWindow = $( '<div class="proposal-window"></div>' );
 
-	container.getElement().append( voteWindow );
-	container.getElement().append( createVoteSendWindow() );
+	container.getElement().append( proposalWindow );
+	container.getElement().append( createproposalSendWindow() );
 });
 
 appLayout.registerComponent('tosheView', function( container, state ) {
 	webstream = $( '<div class="tosheView"> \
-						<img src="http://175.38.65.229:8081/"> \
+						<div class="tosheView-box"><img src="http://175.38.65.229:8081/"></div> \
+						<div class="tosheView-box tosheView-status"><i class="fas fa-spin fa-cog tosheView-status-icon"></i><i class="fas fa-robot"></i></div> \
 					</body>' );
 	container.getElement().append( webstream );
 });
@@ -94,10 +105,12 @@ appLayout.registerComponent('sideBar', function( container, state ){
 });
 
 appLayout.registerComponent('statistics', function( container, state ){
-	statistics = $( '<div class="statistics-window"></div>' )
+	statistics = $( '<div class="statistics-window"></div>' );
 	
 	statistics.append( createHighchartsSingle("chart-msg", "Messages per second", "#3498db", 300, 150) );
 	statistics.append( createHighchartsMulti("chart-power", "Power Consumption", "12V rail", "5V rail", "#e74c3c", "#e67e22", 300, 150) );
+
+	statistics.append( createGaugeMeter("gauge-toshe-user", "Current user lease", "The Winner of them all") );
 	
 	container.getElement().append( statistics );
 });

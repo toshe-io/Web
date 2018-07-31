@@ -1,7 +1,7 @@
 /* VARS */
 var icon_publicBroker = "#broker-status-icon";
 
-var vote_window = ".vote-window";
+var proposal_window = ".proposal-window";
 
 var topic_chat = "toshe/chat";
 

@@ -28,7 +28,7 @@ html {
 
 /* CHAT STUFF */
 
-.chat-window, .vote-window {
+.chat-window, .proposal-window {
 	padding: 10px;
 	overflow-y: scroll;
     overflow-x: hidden;
@@ -140,6 +140,12 @@ html {
     margin-top: 5px;
 }
 
+@media (max-width:940px) {
+    .sideBarItem-title {
+        display: none;
+    }
+}
+
 
 /* GENERAL STUFF */
 .fab, .fas, .far {
@@ -155,6 +161,27 @@ html {
 }
 
 /* STATISCTICS STUFF */
+.stats-box {
+    width: 300px;
+    height: 150px;
+    display: inline-block;
+    background: #373e48;
+    border-radius: 10px;
+    margin: 10px;
+    overflow: hidden;
+}
+
+.stats-box-title {
+    color: #7990a7;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.stats-highchart {
+    margin-top: -50px;
+}
+
 .statistics-window {
 	height: 100%;
     width: 100%;
@@ -163,15 +190,6 @@ html {
     top: 50%;
     transform: translateY(-50%);
     overflow-y: scroll;
-}
-
-.stats-waterbubble {
-	margin-left: 20px;
-	margin-right: 20px;
-}
-
-.stats-highchart {
-	display: inline-block;
 }
 
 /* ICON STUFF */
@@ -187,10 +205,6 @@ html {
 ::-webkit-scrollbar {
     width: 10px;
 }
-
-::-webkit-scrollbar-track {
-    /* background: #f1f1f1; */
-}
  
 ::-webkit-scrollbar-thumb {
     background: #3c4451; 
@@ -203,11 +217,29 @@ html {
 
 /* TOSHE VIEW */
 .tosheView {
-    text-align: center;
+    margin: auto;
+    display: table;
+    height: 100%;
 }
 
-/* VOTE */
-.vote-box {
+.tosheView-box {
+    font-size: 100px;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.tosheView-status > i {
+    font-size: 200px;
+    color: #373e47;
+}
+
+.tosheView-status > .tosheView-status-icon {
+    position: absolute;
+    font-size: 50px;
+}
+
+/* proposal */
+.proposal-box {
 	background: white;
 	padding: 10px;
 	border-radius: 10px;
@@ -215,39 +247,39 @@ html {
     text-align: initial;
 }
 
-.vote-box-title {
+.proposal-box-title {
 	width: 100%;
 	margin: 0;
     font-size: 14px;
 	font-weight: 300;
 }
 
-.vote-box-info {
+.proposal-box-info {
 	margin: 0;
     font-size: 12px;
     padding-top: 10px;
 	font-weight: 300;
 }
 
-.vote-box-info .fab, .vote-box-info .fas, .vote-box-info .far {
+.proposal-box-info .fab, .proposal-box-info .fas, .proposal-box-info .far {
     font-size: 18px;
 }
 
-.vote-box-info>a {
+.proposal-box-info>a {
     text-decoration: none;
     margin-right: 10px;
     color: black;
 }
 
-.vote-box-info .vote-github-btn {
+.proposal-box-info .proposal-github-btn {
     float: right;
 }
 
-.vote-box-info .vote-status-btn {
+.proposal-box-info .proposal-status-btn {
     float: right;
 }
 
-.vote-separator {
+.proposal-separator {
     margin-top: 5px;
     margin-bottom: 5px;
     display: block;
@@ -256,7 +288,7 @@ html {
     white-space: nowrap;
 }
 
-.vote-separator > span {
+.proposal-separator > span {
     position: relative;
     display: inline-block;
     color: white;
@@ -264,8 +296,8 @@ html {
     font-weight: 100;
 }
 
-.vote-separator > span:before,
-.vote-separator > span:after {
+.proposal-separator > span:before,
+.proposal-separator > span:after {
     content: "";
     position: absolute;
     top: 50%;
@@ -274,17 +306,17 @@ html {
     background: #7990a7;
 }
 
-.vote-separator > span:before {
+.proposal-separator > span:before {
     right: 100%;
     margin-right: 15px;
 }
 
-.vote-separator > span:after {
+.proposal-separator > span:after {
     left: 100%;
     margin-left: 15px;
 }
 
-.vote-send-window {
+.proposal-send-window {
 	background: #373e48;
     position: absolute;
     bottom: 0;
@@ -294,7 +326,7 @@ html {
 	display: inline-flex;
 }
 
-.vote-input-text {
+.proposal-input-text {
     height: 100%;
     width: 100%;
     border-radius: 10px;
@@ -303,25 +335,25 @@ html {
     padding-left: 10px;
 }
 
-.vote-input-button {
+.proposal-input-button {
 	width: 29.7%;
     height: 100%;
     border: none;
     background: white;
 }
 
-.vote-input-text-box {
+.proposal-input-text-box {
 	width: 91%;
     height: 100%;
 }
 /* TODO: Fix, if tab moved button wont fit anymore */
-.vote-send-btn-box {
+.proposal-send-btn-box {
     right: 40px;
     position: absolute;
     margin-top: 5px;
 }
 
-.vote-step-count {
+.proposal-step-count {
     position: relative;
     top: -3px;
 }
